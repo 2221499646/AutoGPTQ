@@ -3,8 +3,8 @@ from transformers import AutoTokenizer, TextGenerationPipeline
 from auto_gptq import AutoGPTQForCausalLM, BaseQuantizeConfig
 
 
-pretrained_model_dir = "facebook/opt-125m"
-quantized_model_dir = "opt-125m-4bit-128g"
+pretrained_model_dir = "models/InternLM2.5-7B-Chat"
+quantized_model_dir = "models/InternLM2.5-7B-Chat-Q8"
 
 
 def main():
@@ -16,7 +16,7 @@ def main():
     ]
 
     quantize_config = BaseQuantizeConfig(
-        bits=4,  # quantize model to 4-bit
+        bits=8,  # quantize model to 4-bit
         group_size=128,  # it is recommended to set the value to 128
         desc_act=False,  # set to False can significantly speed up inference but the perplexity may slightly bad
     )
